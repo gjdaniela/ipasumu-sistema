@@ -5,7 +5,6 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@azure/static-web-apps-cli": "^1.1.6",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
