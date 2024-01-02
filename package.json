@@ -12,6 +12,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "alpinejs": "^3.13.3"
+        "alpinejs": "^3.13.3",
+        "datatables.net-dt": "^1.13.8"
     }
 }
