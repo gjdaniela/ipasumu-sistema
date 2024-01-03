@@ -185,6 +185,7 @@ class IpasumsController extends Controller
           
         if ($action == 'delete') {
             if($loma == "Iznomāts" || $loma == "Pārdots")
+            {
             $epasts= "Maina";
              $nak_loma = 'Izdzēsts';
             $successMessage = "Īpašums {$ipasums->ipasuma_nosaukums} veiksmīgi izdzēsts";
@@ -199,7 +200,9 @@ class IpasumsController extends Controller
             // Delete the record
             $ipasums->delete();
              $this->storeVesture( $date,$user, $nosaukums,'izdzēsa īpašumu  –');
-             else {
+        }
+             else 
+             {
              $epasts= "Atcelts";
              $data = [
                 'nosaukums' => $ipasums->ipasuma_nosaukums,
@@ -207,7 +210,7 @@ class IpasumsController extends Controller
                 'url' => $ipasums->URL_adrese,
                 'agent' => $ipasums->agent->agent,
                 'iepr_loma' => $ipasums->loma,
-                'loma' => $nak_loma,
+                'loma' => "Atcelts",
                 'rezervetslidz'=> $ipasums->rezervetslidztermins,
              ];
             // Delete the record
@@ -216,10 +219,12 @@ class IpasumsController extends Controller
             session()->flash('success', $successMessage);
              $this->storeVesture( $date,$user, $nosaukums,'atcēla rezervāciju īpašumam  –');
 	
-}
+
 
         } 
-        elseif ($action == 'pardots') {
+    }
+        elseif ($action == 'pardots') 
+        {
              $epasts= "Maina";
             $ipasums->Datums = $date;
             $ipasums->loma = 'Pārdots';
@@ -289,20 +294,23 @@ class IpasumsController extends Controller
         }
         
         $users= Lietotaji::all();
+
         if ( $epasts == "Maina")
         {
             foreach ($users as $user) {
        
             Mail::to($user->email)->send(new StatusaMainaAdmin($data));
         }
+    }
         elseif($epasts == "Atcelts")
         {
-            foreach ($users as $user) {
+            foreach ($users as $user)
+             {
        
             Mail::to($user->email)->send(new AtceltsRezervejums($data));
         }
-	
-}
+        }
+
 
       
          

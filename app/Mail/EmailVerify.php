@@ -11,9 +11,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Auth\Notifications\VerifyEmail as VerifyEmailNotification;
 use Illuminate\Notifications\Messages\MailMessage;
 
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CustomEmailVerification extends Mailable implements ShouldQueue
 {
